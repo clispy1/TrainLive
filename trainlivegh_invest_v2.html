@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrainLive — Investment Opportunity</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080807;
+  --white: #F4F1EC;
+  --gold: #C9A84C;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gold-border: rgba(201,168,76,0.22);
+  --mid: #131312;
+  --mid2: #1A1A18;
+  --text-dim: rgba(244,241,236,0.5);
+  --text-mid: rgba(244,241,236,0.75);
+  --green: #1A3A2A;
+  --red-dim: rgba(220,80,60,0.08);
+  --red-border: rgba(220,80,60,0.2);
+  --red: #DC6040;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; }
+
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 48px;
+  border-bottom: 1px solid var(--gold-border);
+  background: var(--black);
+  position: sticky; top: 0; z-index: 50;
+}
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
+.nav-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--gold-border); padding: 6px 14px; }
+
+.hero {
+  padding: 100px 48px 80px;
+  position: relative; overflow: hidden;
+  border-bottom: 1px solid var(--gold-border);
+}
+.hero::before {
+  content: ''; position: absolute; top: -20%; right: -10%;
+  width: 50vw; height: 50vw;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; animation: fadeUp 0.7s ease both; }
+.eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.eyebrow-text { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
+.hero h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(44px, 7vw, 88px); line-height: 0.95;
+  letter-spacing: -2px; margin-bottom: 32px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.hero h1 span { color: var(--gold); display: block; }
+.hero p { font-size: 17px; color: var(--text-mid); max-width: 520px; line-height: 1.75; animation: fadeUp 0.7s 0.2s ease both; }
+
+.section { padding: 80px 48px; border-bottom: 1px solid var(--gold-border); }
+.section-label { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--gold-border); }
+h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 44px); letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px; }
+
+/* TERMS */
+.terms-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 48px; }
+.term-box { background: var(--mid2); border: 1px solid var(--gold-border); padding: 32px 24px; }
+.term-box label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.term-box span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; }
+
+/* HIGHLIGHT */
+.highlight { background: var(--green); border-left: 3px solid var(--gold); padding: 32px 40px; margin: 48px 0 0; }
+.highlight p { font-size: 16px; color: rgba(244,241,236,0.9); font-style: italic; margin: 0; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 2px; margin-top: 40px; }
+.step { display: flex; gap: 24px; background: var(--mid); padding: 24px; border-left: 2px solid transparent; transition: border-color 0.2s; }
+.step:hover { border-left-color: var(--gold); }
+.step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; color: var(--gold); opacity: 0.3; line-height: 1; flex-shrink: 0; width: 40px; }
+.step-body h4 { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+.step-body p { font-size: 14px; color: var(--text-dim); margin: 0; }
+
+/* FOUNDER */
+.founder-box {
+  display: grid; grid-template-columns: auto 1fr; gap: 48px;
+  background: var(--mid); padding: 48px; margin-top: 48px; align-items: start;
+}
+.founder-avatar {
+  width: 80px; height: 80px;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; color: var(--gold);
+  flex-shrink: 0;
+}
+.founder-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 4px; }
+.founder-title { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.founder-bio { font-size: 15px; color: var(--text-mid); line-height: 1.75; }
+
+/* WHY NOW */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px; }
+.why-box { background: var(--mid); padding: 36px 32px; border-top: 2px solid var(--gold); }
+.why-box h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+.why-box p { font-size: 14px; color: var(--text-dim); line-height: 1.65; margin: 0; }
+
+/* RISK */
+.risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px; }
+.risk-box { background: var(--red-dim); border: 1px solid var(--red-border); padding: 32px; }
+.risk-box h4 { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 16px; color: var(--red); margin-bottom: 8px; }
+.risk-box p { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.65; }
+.mitigation { background: var(--green); border: 1px solid var(--gold-border); padding: 32px 40px; margin-top: 2px; }
+.mitigation p { font-size: 14px; color: rgba(244,241,236,0.8); margin: 0; }
+.mitigation strong { color: var(--gold); }
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 2px; margin-top: 48px; }
+.timeline-item { display: flex; gap: 24px; background: var(--mid); padding: 24px 28px; align-items: flex-start; }
+.timeline-month { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--gold); white-space: nowrap; width: 100px; flex-shrink: 0; padding-top: 2px; }
+.timeline-content h4 { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.timeline-content p { font-size: 13px; color: var(--text-dim); margin: 0; }
+.timeline-item.highlight-row { background: var(--green); border-left: 2px solid var(--gold); }
+.timeline-item.highlight-row .timeline-month { color: var(--gold); }
+
+/* CTA */
+.cta-section { padding: 80px 48px; text-align: center; }
+.cta-section h2 { margin-bottom: 16px; }
+.cta-section p { font-size: 15px; color: var(--text-dim); margin-bottom: 40px; }
+.btn-gold {
+  background: var(--gold); color: var(--black);
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 16px 40px; border: none; cursor: pointer; transition: all 0.2s; display: inline-block;
+}
+.btn-gold:hover { opacity: 0.85; }
+
+input, textarea {
+  background: var(--mid); border: 1px solid var(--gold-border);
+  color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px;
+  padding: 14px 18px; outline: none; width: 100%;
+  transition: border-color 0.2s;
+}
+input:focus, textarea:focus { border-color: var(--gold); }
+input::placeholder, textarea::placeholder { color: var(--text-dim); }
+
+footer { padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--gold-border); }
+.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
+.footer-note { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) {
+  nav, .hero, .section, .cta-section, footer { padding-left: 20px; padding-right: 20px; }
+  .terms-grid, .why-grid, .risk-grid { grid-template-columns: 1fr 1fr; }
+  .founder-box { grid-template-columns: 1fr; }
+  .hero h1 { letter-spacing: -1px; }
+}
+@media (max-width: 480px) {
+  .terms-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">TrainLive GH</div>
+  <div class="nav-tag">Private · Investor Access Only</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow"><div class="eyebrow-dot"></div><span class="eyebrow-text">Investment Opportunity — Round One</span></div>
+  <h1>Fund the launch.<span>Get 1.5× back.</span></h1>
+  <p>TrainLive is raising a small operational float to launch the first Viral Bounty Challenge — a 14-day creator competition selling a digital product through 50 Ghanaian micro-creators. This is a clean, structured revenue-share opportunity with a clear repayment timeline.</p>
+</div>
+
+<!-- TERMS -->
+<div class="section">
+  <div class="section-label">The Terms</div>
+  <h2>Simple. Transparent. Fair.</h2>
+  <p style="font-size:15px;color:var(--text-mid);max-width:560px">No equity. No complex structures. You fund round one. We launch, generate revenue, and pay you back with a return. Once fully repaid — the agreement ends cleanly.</p>
+  <div class="terms-grid">
+    <div class="term-box"><label>Raise Target</label><span>8,000 – 12,000 GHS</span></div>
+    <div class="term-box"><label>Your Return</label><span>1.5× from revenue</span></div>
+    <div class="term-box"><label>Structure</label><span>Revenue Share</span></div>
+    <div class="term-box"><label>Repayment Begins</label><span>Within 5–6 months</span></div>
+  </div>
+  <div class="highlight">
+    <p>"You invest once. We repay 1.5× from VBC revenue. Once fully repaid, the agreement ends — you keep no stake, we keep full ownership. A clean exit for both sides."</p>
+  </div>
+</div>
+
+<!-- WHO IS BEHIND THIS -->
+<div class="section">
+  <div class="section-label">The Founder</div>
+  <h2>Who you're backing.</h2>
+  <p style="font-size:15px;color:var(--text-mid);max-width:560px">TrainLive is founded by a young Ghanaian entrepreneur who built this from a real observation — and a genuine belief that young people in Ghana deserve better tools to build financial independence.</p>
+  <div class="founder-box">
+    <div class="founder-avatar">J</div>
+    <div>
+      <div class="founder-name">Jake</div>
+      <div class="founder-title">Founder, TrainLive GH</div>
+      <p class="founder-bio">Jake started TrainLive after noticing the same pattern everywhere — young Ghanaians with thousands of followers online, still broke. Not because they lacked talent or audience, but because nobody taught them how to monetise what they had.<br><br>He built TrainLive to solve two connected problems: give creators a real system to earn from their audience, and teach Ghana's next generation how to sell — a skill he believes is the foundation of all financial success.<br><br>TrainLive is his first serious venture. He's building it lean, building it honest, and building it to last.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHY NOW -->
+<div class="section">
+  <div class="section-label">Why Now</div>
+  <h2>The timing has never<br>been better.</h2>
+  <p style="font-size:15px;color:var(--text-mid);max-width:560px">Several forces are converging right now that make VBC's launch not just timely — but urgent.</p>
+  <div class="why-grid">
+    <div class="why-box">
+      <h4>Ghana's Creator Economy is Exploding</h4>
+      <p>TikTok and Instagram have produced thousands of young Ghanaian creators with real audiences. Most are earning nothing. The supply of hungry, motivated creators has never been higher.</p>
+    </div>
+    <div class="why-box">
+      <h4>Businesses Need Affordable Marketing</h4>
+      <p>Small and medium businesses in Ghana can't afford mega-influencer deals. They need performance-based, affordable alternatives. TrainLive is that alternative.</p>
+    </div>
+    <div class="why-box">
+      <h4>AI is Raising the Bar for Creators</h4>
+      <p>AI is making generic content creation cheaper and easier. Creators who know how to sell — not just post — will survive and thrive. TrainLive is building those creators.</p>
+    </div>
+    <div class="why-box">
+      <h4>No One is Doing This in Ghana</h4>
+      <p>Passive affiliate marketplaces exist. But a structured, competitive, prize-driven 14-day challenge system specifically for Ghana's micro-creators? TrainLive is the first.</p>
+    </div>
+  </div>
+</div>
+
+<!-- USE OF FUNDS -->
+<div class="section">
+  <div class="section-label">Use of Funds</div>
+  <h2>Where your money goes.</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-body"><h4>Content Production</h4><p>Recruitment ad video, VSL for landing page, and daily challenge videos featuring 5 on-camera brand hosts across the 14-day challenge.</p></div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-body"><h4>Operational Float</h4><p>Day-to-day logistics — host transport, coordination costs, and team support during production and the challenge period.</p></div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-body"><h4>Prize Pool</h4><p>Cash prizes for the top 3 creators — the incentive that drives creator effort, content quality, and sales performance throughout the challenge.</p></div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-body"><h4>Platform Costs</h4><p>Domain, website deployment, Paystack payment integration, and affiliate tracking system for monitoring creator sales.</p></div></div>
+  </div>
+</div>
+
+<!-- REPAYMENT TIMELINE -->
+<div class="section">
+  <div class="section-label">Repayment Timeline</div>
+  <h2>When you get paid back.</h2>
+  <p style="font-size:15px;color:var(--text-mid);max-width:560px">Here is the realistic timeline from funding to repayment, built with buffer time included.</p>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-month">Month 1</div><div class="timeline-content"><h4>Funding & Team</h4><p>Funds secured, team recruited, hosts briefed and committed.</p></div></div>
+    <div class="timeline-item"><div class="timeline-month">Month 2</div><div class="timeline-content"><h4>Product & Platform</h4><p>Hustle Playbook created, website live, payment and affiliate systems set up.</p></div></div>
+    <div class="timeline-item"><div class="timeline-month">Month 3</div><div class="timeline-content"><h4>Production</h4><p>All videos recorded and edited. Recruitment campaign begins.</p></div></div>
+    <div class="timeline-item"><div class="timeline-month">Month 4</div><div class="timeline-content"><h4>Creator Recruitment</h4><p>50 creators registered and ready. Challenge confirmed to launch.</p></div></div>
+    <div class="timeline-item highlight-row"><div class="timeline-month">Month 4–5</div><div class="timeline-content"><h4>The Challenge Runs</h4><p>14-day VBC live. Sales tracked daily. Winners announced. Revenue collected.</p></div></div>
+    <div class="timeline-item highlight-row"><div class="timeline-month">Month 5–6</div><div class="timeline-content"><h4>Repayment Begins</h4><p>Investor repayment begins from revenue. 1.5× returned in full.</p></div></div>
+  </div>
+</div>
+
+<!-- RISK -->
+<div class="section">
+  <div class="section-label">Risk & Transparency</div>
+  <h2>What if things don't<br>go to plan?</h2>
+  <p style="font-size:15px;color:var(--text-mid);max-width:560px">We believe in full transparency. Here are the realistic risks — and how we've designed the system to address each one.</p>
+  <div class="risk-grid">
+    <div class="risk-box">
+      <h4>Risk: We don't recruit 50 creators</h4>
+      <p>If the challenge doesn't reach the minimum 50 creators, the challenge does not launch and all entry fees are fully refunded to creators.</p>
+    </div>
+    <div class="risk-box">
+      <h4>Risk: Sales are lower than projected</h4>
+      <p>If product sales underperform, repayment will take longer than the 5–6 month target but remains a commitment. Round two revenue supplements repayment if needed.</p>
+    </div>
+    <div class="risk-box">
+      <h4>Risk: Team doesn't hold together</h4>
+      <p>Last time this happened due to cash constraints. This time the operational float is funded before production begins — the core cause of the previous collapse is eliminated.</p>
+    </div>
+    <div class="risk-box">
+      <h4>Risk: This is a first-time venture</h4>
+      <p>TrainLive is a new company. There is no track record yet. This is an early-stage investment in a first-time founder with a clear plan and a real problem to solve.</p>
+    </div>
+  </div>
+  <div class="mitigation">
+    <p><strong>Our commitment:</strong> Full transparency throughout. You will be updated on progress at every phase — funding, production, recruitment, and challenge performance. No surprises.</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to invest?</h2>
+  <p>Express your interest below. We'll follow up with a simple one-page agreement and payment details via WhatsApp.</p>
+  <button class="btn-gold" onclick="document.getElementById('interest-form').style.display='block';this.style.display='none'">Express Interest →</button>
+
+  <div id="interest-form" style="display:none;margin-top:48px;max-width:480px;margin-left:auto;margin-right:auto;text-align:left">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <input type="text" id="inv-name" placeholder="Your full name">
+      <input type="tel" id="inv-phone" placeholder="Your WhatsApp number">
+      <input type="number" id="inv-amount" placeholder="Amount you'd like to invest (GHS)">
+      <textarea id="inv-note" rows="3" placeholder="Any questions or notes (optional)" style="resize:vertical"></textarea>
+      <button class="btn-gold" style="width:100%;margin-top:4px" onclick="submitInterest()">Submit →</button>
+    </div>
+    <div id="form-msg" style="margin-top:20px;font-size:14px;color:var(--gold);display:none;line-height:1.6"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">TrainLive GH</div>
+  <div class="footer-note">Confidential · Not for public distribution · Ghana 2025</div>
+</footer>
+
+<script>
+function submitInterest() {
+  const name = document.getElementById('inv-name').value.trim();
+  const phone = document.getElementById('inv-phone').value.trim();
+  const amount = document.getElementById('inv-amount').value.trim();
+  if (!name || !phone) { alert('Please enter your name and WhatsApp number.'); return; }
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'block';
+  msg.innerHTML = `Thank you, <strong style="color:var(--gold)">${name}</strong>. We've received your interest${amount ? ' for <strong style="color:var(--gold)">GHS ' + Number(amount).toLocaleString() + '</strong>' : ''}.<br><br>We'll reach out to you on WhatsApp shortly with next steps and the simple investment agreement.`;
+}
+</script>
+</body>
+</html>

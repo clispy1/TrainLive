@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrainLive — My Plan</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080807;
+  --white: #F4F1EC;
+  --gold: #C9A84C;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gold-border: rgba(201,168,76,0.22);
+  --mid: #131312;
+  --text-dim: rgba(244,241,236,0.5);
+  --text-mid: rgba(244,241,236,0.75);
+  --done: #162113;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  padding-bottom: 80px;
+}
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(8,8,7,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gold-border);
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  z-index: 50;
+}
+.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
+.header-right { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.progress-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+.progress-bar { width: 160px; height: 3px; background: rgba(201,168,76,0.12); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+.progress-count { font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+
+.container { max-width: 820px; margin: 0 auto; padding: 60px 48px 0; }
+
+.page-title { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--gold-border); }
+.page-title h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 52px); letter-spacing: -1.5px; line-height: 1; margin-bottom: 10px; }
+.page-title p { font-size: 14px; color: var(--text-dim); }
+
+.phase { margin-bottom: 52px; }
+.phase-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.phase-num { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); white-space: nowrap; font-family: 'Syne', sans-serif; font-weight: 600; }
+.phase-line { flex: 1; height: 1px; background: var(--gold-border); }
+.phase-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 19px; margin-bottom: 3px; }
+.phase-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; }
+
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--mid);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-left: 2px solid transparent;
+  user-select: none;
+}
+.checklist li:hover { background: #1a1a18; }
+.checklist li.checked { background: var(--done); border-left-color: var(--gold); }
+.checklist li.checked .task-text { text-decoration: line-through; color: rgba(244,241,236,0.3); }
+.checkbox {
+  width: 18px; height: 18px;
+  border: 1.5px solid rgba(201,168,76,0.35);
+  border-radius: 3px;
+  flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.checklist li.checked .checkbox { background: var(--gold); border-color: var(--gold); }
+.checkbox svg { display: none; width: 10px; height: 10px; }
+.checklist li.checked .checkbox svg { display: block; }
+.task-content { flex: 1; }
+.task-text { font-size: 14px; color: var(--text-mid); line-height: 1.5; transition: all 0.2s; }
+.task-note { font-size: 12px; color: rgba(244,241,236,0.3); margin-top: 3px; font-style: italic; }
+.tag { display: inline-block; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+.tag-urgent { background: rgba(232,92,44,0.12); color: #E85C2C; border: 1px solid rgba(232,92,44,0.25); }
+.tag-money { background: rgba(201,168,76,0.1); color: var(--gold); border: 1px solid rgba(201,168,76,0.22); }
+.tag-people { background: rgba(100,149,237,0.1); color: #7EB3FF; border: 1px solid rgba(100,149,237,0.22); }
+.tag-tech { background: rgba(100,200,120,0.1); color: #7DD4A0; border: 1px solid rgba(100,200,120,0.22); }
+
+.reset-btn {
+  display: block; margin: 48px auto 0;
+  background: transparent;
+  border: 1px solid var(--gold-border);
+  color: var(--text-dim);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 12px 28px; cursor: pointer; transition: all 0.2s;
+}
+.reset-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+@media (max-width: 768px) {
+  header { padding: 16px 20px; }
+  .container { padding: 40px 20px 0; }
+  .progress-bar { width: 100px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">TrainLive — My Plan</div>
+  <div class="header-right">
+    <div class="progress-label">Progress</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-count" id="progressCount">0 of 0 complete</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="page-title">
+    <h1>VBC Execution Plan</h1>
+    <p>Round One · Pre-Launch Checklist · Click each task to mark it done.</p>
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 01</span><div class="phase-line"></div></div>
+    <div class="phase-title">Funding</div>
+    <p class="phase-desc">Secure the float before anything else moves.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Break down exactly how much you need — production, transport, prize pool, platform <span class="tag tag-money">Money</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Identify 2–3 potential investors from your network <span class="tag tag-people">People</span></div><div class="task-note">Restaurant owner is one. Start with people who already believe in you.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Book investor meetings — present the plan <span class="tag tag-urgent">Urgent</span></div><div class="task-note">Use the investor page. Enter the URL on their phone.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Draft simple written agreement — 1.5× revenue share <span class="tag tag-money">Money</span></div><div class="task-note">One page. Both parties sign.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Secure and receive funds <span class="tag tag-money">Money</span></div></div></li>
+    </ul>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 02</span><div class="phase-line"></div></div>
+    <div class="phase-title">Team & Hosts</div>
+    <p class="phase-desc">Recruit and lock in your core team before production starts.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Scout and shortlist 5 Brand Hosts (4 female, 1 male) <span class="tag tag-people">People</span></div><div class="task-note">Presentable, camera-comfortable, reliable.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Brief hosts — role, expectations, profit-share agreement <span class="tag tag-people">People</span></div><div class="task-note">Be fully transparent. No surprises this time.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Get written commitment from all 5 hosts <span class="tag tag-urgent">Urgent</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Recruit Video Editor — profit-share basis <span class="tag tag-people">People</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Recruit Challenge Manager — WhatsApp & creator support <span class="tag tag-people">People</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Hold full team briefing before production starts <span class="tag tag-urgent">Urgent</span></div></div></li>
+    </ul>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 03</span><div class="phase-line"></div></div>
+    <div class="phase-title">The Product</div>
+    <p class="phase-desc">Create the Hustle & Entrepreneurship Playbook.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Define playbook title and core promise</div><div class="task-note">Who it's for, what it teaches, what changes after using it.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Outline playbook contents — sections and key lessons</div><div class="task-note">Actionable steps. Not theory.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Write and create the playbook content</div><div class="task-note">AI can help. We can work on it together.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Design the playbook — visual, clean, premium feel</div><div class="task-note">Use Canva. Must look worth the price.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Set the product price <span class="tag tag-money">Money</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Upload product to Paystack/Payhip for digital delivery <span class="tag tag-tech">Tech</span></div></div></li>
+    </ul>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 04</span><div class="phase-line"></div></div>
+    <div class="phase-title">Platform & Tech</div>
+    <p class="phase-desc">Set up digital infrastructure before marketing begins.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Purchase TrainLive domain <span class="tag tag-urgent">Urgent</span> <span class="tag tag-tech">Tech</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Deploy public website to trainlivegh.com <span class="tag tag-tech">Tech</span></div><div class="task-note">Home + VBC pages. Public facing.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Deploy investment page to invest.trainlivegh.com <span class="tag tag-tech">Tech</span></div><div class="task-note">Private. Only share URL in person with investors.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Deploy this checklist to plan.trainlivegh.com <span class="tag tag-tech">Tech</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Build VBC landing page with VSL embedded <span class="tag tag-tech">Tech</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Set up registration form — name, email, phone, social handles, followers <span class="tag tag-tech">Tech</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Connect Paystack for entry fee collection <span class="tag tag-tech">Tech</span> <span class="tag tag-money">Money</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Set up affiliate tracking for creators <span class="tag tag-tech">Tech</span></div><div class="task-note">Discuss with your dev friend.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Create TrainLive WhatsApp Channel <span class="tag tag-tech">Tech</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Create WhatsApp Group for registered creators <span class="tag tag-tech">Tech</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Set up TikTok and Instagram for TrainLive <span class="tag tag-tech">Tech</span></div></div></li>
+    </ul>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 05</span><div class="phase-line"></div></div>
+    <div class="phase-title">Content Production</div>
+    <p class="phase-desc">Record all videos before the challenge goes live.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Write all video scripts before shooting anything <span class="tag tag-urgent">Urgent</span></div><div class="task-note">Recruitment ad, VSL, Day 0, Day 1–14 dailies, winner announcement.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Book and confirm filming location in advance <span class="tag tag-urgent">Urgent</span></div><div class="task-note">Written permission. Backup location ready. Don't repeat last time.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Record recruitment ad video (hosts on camera)</div><div class="task-note">Speaks to creators AND buyers simultaneously.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Record VSL — full explanation for the landing page</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Record Day 0 video — product reveal, rules, expectations</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Record daily videos Day 1–14 (motivation, tips, hype, leaderboard)</div><div class="task-note">1–2 minutes each. Energy matters more than length.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Edit and finalise all videos</div></div></li>
+    </ul>
+  </div>
+
+  <!-- Phase 6 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 06</span><div class="phase-line"></div></div>
+    <div class="phase-title">Creator Recruitment</div>
+    <p class="phase-desc">Fill 50 spots before the challenge launches.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Set entry fee and early bird deadline <span class="tag tag-money">Money</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Post recruitment ad on TikTok and Instagram</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Share in WhatsApp groups and personal contacts</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Personally recruit 5–10 free-entry creators to seed the group <span class="tag tag-people">People</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Monitor registrations daily — follow up with interested creators</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Hit 50 registrations — confirm challenge is launching <span class="tag tag-urgent">Urgent</span></div><div class="task-note">If not met, refund all entry fees as promised.</div></div></li>
+    </ul>
+  </div>
+
+  <!-- Phase 7 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 07</span><div class="phase-line"></div></div>
+    <div class="phase-title">The Challenge (Day 0–14)</div>
+    <p class="phase-desc">Run it. Keep the energy high every single day.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Day 0 — Send product, affiliate links, rules to all creators</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Day 1 — Challenge begins. Drop first video.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Days 1–14 — Daily video, leaderboard update, group active</div><div class="task-note">Challenge Manager owns this daily.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Track sales and performance throughout <span class="tag tag-tech">Tech</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Day 14 — Tally final scores, confirm winners</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Announce winners publicly on all platforms</div><div class="task-note">Make it big. This content automatically recruits round two creators.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Pay winners and team <span class="tag tag-money">Money</span></div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Begin investor repayment from revenue <span class="tag tag-money">Money</span></div></div></li>
+    </ul>
+  </div>
+
+  <!-- Phase 8 -->
+  <div class="phase">
+    <div class="phase-header"><span class="phase-num">Phase 08</span><div class="phase-line"></div></div>
+    <div class="phase-title">Post-Challenge Review</div>
+    <p class="phase-desc">Learn, document, and prepare for round two.</p>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Review total revenue, costs, and profit</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Document what worked and what didn't</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Collect testimonials from top creators</div><div class="task-note">Social proof for round two and future investors.</div></div></li>
+      <li onclick="toggle(this)"><div class="checkbox"><svg viewBox="0 0 10 10" fill="none"><polyline points="1,5 3.5,7.5 9,2" stroke="#080807" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="task-content"><div class="task-text">Begin planning round two — product, niche, business partner</div></div></li>
+    </ul>
+  </div>
+
+  <button class="reset-btn" onclick="resetAll()">Reset All Checkboxes</button>
+
+</div>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('checked');
+    updateProgress();
+    saveState();
+  }
+  function updateProgress() {
+    const all = document.querySelectorAll('.checklist li');
+    const done = document.querySelectorAll('.checklist li.checked');
+    const pct = all.length ? (done.length / all.length) * 100 : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = done.length + ' of ' + all.length + ' complete';
+  }
+  function saveState() {
+    const items = document.querySelectorAll('.checklist li');
+    const state = Array.from(items).map(i => i.classList.contains('checked'));
+    localStorage.setItem('tl_plan_v1', JSON.stringify(state));
+  }
+  function loadState() {
+    const saved = localStorage.getItem('tl_plan_v1');
+    if (!saved) return;
+    const state = JSON.parse(saved);
+    const items = document.querySelectorAll('.checklist li');
+    items.forEach((item, i) => { if (state[i]) item.classList.add('checked'); });
+    updateProgress();
+  }
+  function resetAll() {
+    if (!confirm('Reset all checkboxes?')) return;
+    document.querySelectorAll('.checklist li').forEach(i => i.classList.remove('checked'));
+    localStorage.removeItem('tl_plan_v1');
+    updateProgress();
+  }
+  loadState();
+  updateProgress();
+</script>
+</body>
+</html>
