@@ -1,455 +1,1052 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrainLive GH — Creator Marketing, Engineered.</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-:root {
-  --black: #080807;
-  --white: #F4F1EC;
-  --gold: #C9A84C;
-  --gold-dim: rgba(201,168,76,0.15);
-  --gold-border: rgba(201,168,76,0.22);
-  --mid: #131312;
-  --mid2: #1A1A18;
-  --text-dim: rgba(244,241,236,0.5);
-  --text-mid: rgba(244,241,236,0.75);
-  --green: #1A3A2A;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--black);
-  color: var(--white);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-}
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 48px;
-  background: rgba(8,8,7,0.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--gold-border);
-}
-.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); cursor: pointer; }
-.nav-links { display: flex; gap: 4px; }
-.nav-btn {
-  background: none; border: none;
-  color: var(--text-dim);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px; letter-spacing: 1px;
-  padding: 8px 18px; cursor: pointer; transition: all 0.2s;
-}
-.nav-btn:hover { color: var(--white); }
-.nav-btn.active { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrainLive GH — Creator Marketing, Engineered.</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --black: #080807;
+      --white: #F4F1EC;
+      --gold: #C9A84C;
+      --gold-dim: rgba(201, 168, 76, 0.15);
+      --gold-border: rgba(201, 168, 76, 0.22);
+      --mid: #131312;
+      --mid2: #1A1A18;
+      --text-dim: rgba(244, 241, 236, 0.5);
+      --text-mid: rgba(244, 241, 236, 0.75);
+      --green: #1A3A2A;
+    }
 
-.page { display: none; padding-top: 80px; }
-.page.active { display: block; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* HERO */
-.hero {
-  min-height: calc(100vh - 80px);
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 48px 60px;
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: ''; position: absolute; top: -20%; right: -10%;
-  width: 55vw; height: 55vw;
-  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--gold-border); }
-.hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; animation: fadeUp 0.8s ease both; }
-.eyebrow-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
-.eyebrow-text { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
-.hero h1 {
-  font-family: 'Syne', sans-serif; font-weight: 800;
-  font-size: clamp(52px, 9vw, 120px);
-  line-height: 0.9; letter-spacing: -3px; max-width: 900px;
-  animation: fadeUp 0.8s 0.1s ease both;
-}
-.hero h1 em { font-style: normal; color: var(--gold); display: block; }
-.hero-sub { margin-top: 40px; font-size: 17px; color: var(--text-mid); max-width: 520px; line-height: 1.7; animation: fadeUp 0.8s 0.2s ease both; }
-.hero-cta { margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both; }
-.btn-gold {
-  background: var(--gold); color: var(--black);
-  font-family: 'Syne', sans-serif; font-weight: 700;
-  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-  padding: 14px 32px; border: none; cursor: pointer; transition: all 0.2s;
-}
-.btn-gold:hover { opacity: 0.85; }
-.btn-outline {
-  background: transparent; color: var(--text-mid);
-  font-family: 'Syne', sans-serif; font-weight: 600;
-  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-  padding: 14px 32px; border: 1px solid var(--gold-border); cursor: pointer; transition: all 0.2s;
-}
-.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-.hero-scroll {
-  position: absolute; bottom: 32px; left: 48px;
-  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--text-dim); display: flex; align-items: center; gap: 12px;
-  animation: fadeUp 0.8s 0.5s ease both;
-}
-.scroll-line { width: 40px; height: 1px; background: var(--gold-border); }
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* SECTIONS */
-.section { padding: 100px 48px; border-bottom: 1px solid var(--gold-border); }
-.section-label {
-  font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
-  display: flex; align-items: center; gap: 16px; margin-bottom: 56px;
-}
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--gold-border); }
-h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(32px, 5vw, 56px); letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 24px; }
-p.lead { font-size: 17px; color: var(--text-mid); max-width: 580px; line-height: 1.75; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
 
-/* PILLARS */
-.pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 64px; }
-.pillar { background: var(--mid); padding: 40px 32px; border-top: 2px solid transparent; transition: border-color 0.3s; }
-.pillar:hover { border-top-color: var(--gold); }
-.pillar-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 3px; color: var(--gold); opacity: 0.5; margin-bottom: 24px; }
-.pillar h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 12px; }
-.pillar p { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(8, 8, 7, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-border);
+    }
 
-/* FOR BUSINESSES / CREATORS */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 64px; }
-.col-box { background: var(--mid); padding: 48px 40px; }
-.col-box.gold-top { border-top: 2px solid var(--gold); }
-.col-box h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; margin-bottom: 16px; }
-.col-box p { font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 24px; }
-ul.clean { list-style: none; padding: 0; }
-ul.clean li { padding: 10px 0; border-bottom: 1px solid var(--gold-border); font-size: 14px; color: var(--text-mid); display: flex; gap: 12px; }
-ul.clean li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      cursor: pointer;
+    }
 
-/* HIGHLIGHT */
-.highlight { background: var(--green); border-left: 3px solid var(--gold); padding: 32px 40px; margin: 48px 0 0; }
-.highlight p { font-size: 16px; color: rgba(244,241,236,0.9); font-style: italic; margin: 0; }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
 
-/* VBC SECTION */
-.vbc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 64px; }
-.vbc-steps { display: flex; flex-direction: column; gap: 2px; }
-.vbc-step { display: flex; align-items: flex-start; gap: 20px; padding: 20px 24px; background: var(--mid); border-left: 2px solid transparent; transition: border-color 0.2s; }
-.vbc-step:hover { border-left-color: var(--gold); }
-.step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 11px; color: var(--gold); opacity: 0.5; margin-top: 2px; flex-shrink: 0; width: 24px; }
-.step-text { font-size: 14px; color: var(--text-mid); line-height: 1.5; }
-.vbc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-.vbc-stat { background: var(--mid2); padding: 32px 28px; border: 1px solid var(--gold-border); }
-.vbc-stat .big { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 52px; color: var(--gold); line-height: 1; margin-bottom: 8px; }
-.vbc-stat .label { font-size: 12px; color: var(--text-dim); letter-spacing: 1px; }
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-/* CONTACT */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 48px; align-items: start; }
-.contact-item { display: flex; flex-direction: column; gap: 6px; padding: 28px 32px; background: var(--mid); border-left: 2px solid var(--gold); }
-.contact-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-.contact-value { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 16px; }
-.contact-items { display: flex; flex-direction: column; gap: 2px; }
+    .nav-btn:hover {
+      color: var(--white);
+    }
 
-/* FOOTER */
-footer { padding: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
-.footer-note { font-size: 12px; color: var(--text-dim); }
+    .nav-btn.active {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+    }
 
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .page {
+      display: none;
+      padding-top: 80px;
+    }
 
-@media (max-width: 768px) {
-  nav { padding: 16px 20px; }
-  .nav-logo { font-size: 12px; letter-spacing: 2px; }
-  .nav-btn { padding: 8px 10px; font-size: 12px; }
-  .hero, .section { padding-left: 20px; padding-right: 20px; }
-  .hero h1 { letter-spacing: -1px; }
-  .pillars, .two-col, .vbc-grid, .vbc-stats, .contact-grid { grid-template-columns: 1fr; }
-  footer { padding: 32px 20px; }
-}
-</style>
+    .page.active {
+      display: block;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gold-border);
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .eyebrow-text {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(52px, 9vw, 120px);
+      line-height: 0.9;
+      letter-spacing: -3px;
+      max-width: 900px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-sub {
+      margin-top: 40px;
+      font-size: 17px;
+      color: var(--text-mid);
+      max-width: 520px;
+      line-height: 1.7;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-cta {
+      margin-top: 48px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-gold:hover {
+      opacity: 0.85;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-mid);
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 1px solid var(--gold-border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 48px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold-border);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 100px 48px;
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-border);
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 5vw, 56px);
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    p.lead {
+      font-size: 17px;
+      color: var(--text-mid);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .pillar {
+      background: var(--mid);
+      padding: 40px 32px;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .pillar:hover {
+      border-top-color: var(--gold);
+    }
+
+    .pillar-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 24px;
+    }
+
+    .pillar h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .pillar p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .col-box {
+      background: var(--mid);
+      padding: 48px 40px;
+    }
+
+    .col-box.gold-top {
+      border-top: 2px solid var(--gold);
+    }
+
+    .col-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .col-box p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    ul.clean {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.clean li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gold-border);
+      font-size: 14px;
+      color: var(--text-mid);
+      display: flex;
+      gap: 12px;
+    }
+
+    ul.clean li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .highlight {
+      background: var(--green);
+      border-left: 3px solid var(--gold);
+      padding: 32px 40px;
+      margin: 48px 0 0;
+    }
+
+    .highlight p {
+      font-size: 16px;
+      color: rgba(244, 241, 236, 0.9);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* CREATOR BENEFITS GRID */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+
+    .benefit-box {
+      background: var(--mid);
+      padding: 32px 28px;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .benefit-box:hover {
+      border-top-color: var(--gold);
+    }
+
+    .benefit-icon {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .benefit-box h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .benefit-box p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* BRAND DEAL SECTION */
+    .brand-deal-box {
+      background: var(--mid2);
+      border: 1px solid var(--gold-border);
+      border-left: 4px solid var(--gold);
+      padding: 48px;
+      margin-top: 64px;
+    }
+
+    .brand-deal-box h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .brand-deal-box p {
+      font-size: 15px;
+      color: var(--text-mid);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .brand-deal-steps {
+      display: flex;
+      gap: 2px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .bd-step {
+      flex: 1;
+      min-width: 160px;
+      background: var(--mid);
+      padding: 24px 20px;
+    }
+
+    .bd-step-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .bd-step p {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* VBC */
+    .vbc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 64px;
+    }
+
+    .vbc-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .vbc-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px 24px;
+      background: var(--mid);
+      border-left: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .vbc-step:hover {
+      border-left-color: var(--gold);
+    }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-top: 2px;
+      flex-shrink: 0;
+      width: 24px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .vbc-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .vbc-stat {
+      background: var(--mid2);
+      padding: 32px 28px;
+      border: 1px solid var(--gold-border);
+    }
+
+    .vbc-stat .big {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 52px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .vbc-stat .label {
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 24px 28px;
+      background: var(--mid);
+      border-left: 2px solid var(--gold);
+    }
+
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .contact-value {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    footer {
+      padding: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 20px;
+      }
+
+      .hero,
+      .section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .pillars,
+      .two-col,
+      .vbc-grid,
+      .vbc-stats,
+      .contact-grid,
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-deal-steps {
+        flex-direction: column;
+      }
+
+      footer {
+        padding: 32px 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav>
-  <div class="nav-logo" onclick="showPage('home')">TrainLive</div>
-  <div class="nav-links">
-    <button class="nav-btn active" id="btn-home" onclick="showPage('home')">Home</button>
-    <button class="nav-btn" id="btn-vbc" onclick="showPage('vbc')">VBC</button>
-    <button class="nav-btn" id="btn-businesses" onclick="showPage('businesses')">Businesses</button>
-    <button class="nav-btn" id="btn-creators" onclick="showPage('creators')">Creators</button>
-    <button class="nav-btn" id="btn-contact" onclick="showPage('contact')">Contact</button>
-  </div>
-</nav>
-
-<!-- ══ HOME ══ -->
-<div class="page active" id="page-home">
-  <div class="hero">
-    <div class="hero-eyebrow"><div class="eyebrow-dot"></div><span class="eyebrow-text">Ghana's Creator Marketing Network</span></div>
-    <h1>We Turn<em>Creators Into</em>Sales.</h1>
-    <p class="hero-sub">TrainLive connects businesses with a trained, competitive community of micro-creators who don't just post — they sell.</p>
-    <div class="hero-cta">
-      <button class="btn-gold" onclick="showPage('vbc')">See How It Works</button>
-      <button class="btn-outline" onclick="showPage('businesses')">I Have a Business</button>
-      <button class="btn-outline" onclick="showPage('creators')">I'm a Creator</button>
+  <nav>
+    <div class="nav-logo" onclick="showPage('home')">TrainLive</div>
+    <div class="nav-links">
+      <button class="nav-btn active" id="btn-home" onclick="showPage('home')">Home</button>
+      <button class="nav-btn" id="btn-vbc" onclick="showPage('vbc')">VBC</button>
+      <button class="nav-btn" id="btn-businesses" onclick="showPage('businesses')">Businesses</button>
+      <button class="nav-btn" id="btn-creators" onclick="showPage('creators')">Creators</button>
+      <button class="nav-btn" id="btn-contact" onclick="showPage('contact')">Contact</button>
     </div>
-    <div class="hero-scroll"><div class="scroll-line"></div>Scroll to learn more</div>
-  </div>
+  </nav>
 
-  <div class="section">
-    <div class="section-label">What We Do</div>
-    <h2>The bridge between<br>brands and creators.</h2>
-    <p class="lead">Instead of one expensive mega-influencer, TrainLive deploys 10, 20, or 50 hungry micro-creators — structured, incentivised, and competing to perform for your brand.</p>
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-num">01</div>
-        <h3>The Network</h3>
-        <p>A growing community of serious Ghanaian micro-creators aged 18–30, across TikTok, Instagram, Snapchat and more — ready to promote your product.</p>
+  <!-- HOME -->
+  <div class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <div class="eyebrow-dot"></div><span class="eyebrow-text">Ghana's Creator Marketing Network</span>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">02</div>
-        <h3>The Engine</h3>
-        <p>The Viral Bounty Challenge — a 14-day structured competition that turns creators into a high-performance sales force for any product or brand.</p>
+      <h1>We Turn<em>Creators Into</em>Sales.</h1>
+      <p class="hero-sub">TrainLive connects businesses with a trained, competitive community of micro-creators who
+        don't just post — they sell.</p>
+      <div class="hero-cta">
+        <button class="btn-gold" onclick="showPage('vbc')">See How It Works</button>
+        <button class="btn-outline" onclick="showPage('businesses')">I Have a Business</button>
+        <button class="btn-outline" onclick="showPage('creators')">I'm a Creator</button>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">03</div>
-        <h3>The Training</h3>
-        <p>TrainLive teaches people how to sell effectively — turning Ghana's next generation of content creators into confident, skilled digital marketers.</p>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>Scroll to learn more
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="section-label">The Opportunity</div>
-    <h2>Ghana's creator economy<br>is leaking value.</h2>
-    <p class="lead">Thousands of young Ghanaians have built real audiences — 5K, 10K, 50K followers — and are earning nothing from it. Meanwhile, businesses struggle to get exposure without big influencer budgets. TrainLive solves both sides of this problem at once.</p>
-    <div class="highlight">
-      <p>"Instead of one mega-influencer, why not deploy 10, 20, or 50 micro-creators who are hungry, structured, and competing to perform?"</p>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-logo">TrainLive GH</div>
-    <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
-  </footer>
-</div>
-
-<!-- ══ VBC ══ -->
-<div class="page" id="page-vbc">
-  <div class="section">
-    <div class="section-label">The Engine</div>
-    <h2>The Viral Bounty<br>Challenge.</h2>
-    <p class="lead">A 14-day creator competition that sells any product at scale. Structured, repeatable, and powered by competition, daily engagement, and real cash prizes.</p>
-    <div class="vbc-grid">
-      <div class="vbc-steps">
-        <div class="vbc-step"><div class="step-num">01</div><div class="step-text">Recruitment ad drops on TikTok & Instagram</div></div>
-        <div class="vbc-step"><div class="step-num">02</div><div class="step-text">Creators join the TrainLive WhatsApp Channel</div></div>
-        <div class="vbc-step"><div class="step-num">03</div><div class="step-text">VSL on landing page explains the challenge fully</div></div>
-        <div class="vbc-step"><div class="step-num">04</div><div class="step-text">Creators register, pay entry fee, join the group</div></div>
-        <div class="vbc-step"><div class="step-num">05</div><div class="step-text">Receive product, affiliate link & instructions</div></div>
-        <div class="vbc-step"><div class="step-num">06</div><div class="step-text">14-day challenge begins — daily videos keep energy high</div></div>
-        <div class="vbc-step"><div class="step-num">07</div><div class="step-text">Winners announced. Prizes paid. Round two begins.</div></div>
-      </div>
-      <div class="vbc-stats">
-        <div class="vbc-stat"><div class="big">14</div><div class="label">Days per challenge</div></div>
-        <div class="vbc-stat"><div class="big">50</div><div class="label">Creators per round</div></div>
-        <div class="vbc-stat"><div class="big">∞</div><div class="label">Repeatable rounds</div></div>
-        <div class="vbc-stat"><div class="big">2×</div><div class="label">Revenue sides</div></div>
+    <div class="section">
+      <div class="section-label">What We Do</div>
+      <h2>The bridge between<br>brands and creators.</h2>
+      <p class="lead">Instead of one expensive mega-influencer, TrainLive deploys 10, 20, or 50 hungry micro-creators —
+        structured, incentivised, and competing to perform for your brand.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h3>The Network</h3>
+          <p>A growing community of serious Ghanaian micro-creators aged 18–30, across TikTok, Instagram, Snapchat and
+            more — ready to promote your product.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h3>The Engine</h3>
+          <p>The Viral Bounty Challenge — a 14-day structured competition that turns creators into a high-performance
+            sales force for any product or brand.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h3>The Training</h3>
+          <p>TrainLive teaches people how to sell effectively — turning Ghana's next generation of content creators into
+            confident, skilled digital marketers.</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="section-label">Why It Works</div>
-    <h2>Competition changes everything.</h2>
-    <p class="lead">Creators don't just post and forget — they are competing, being tracked on a leaderboard, and motivated daily. That energy produces better content, more reach, and more sales than any passive affiliate programme.</p>
-    <div class="pillars" style="margin-top:48px">
-      <div class="pillar">
-        <div class="pillar-num">→</div>
-        <h3>Structured</h3>
-        <p>Every creator follows a clear system — product, instructions, affiliate link, daily guidance. No guesswork.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">→</div>
-        <h3>Incentivised</h3>
-        <p>Real cash prizes on the line. A leaderboard that moves daily. Creators who want to win will work harder than any paid ad.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">→</div>
-        <h3>Repeatable</h3>
-        <p>Same system every round. Different product, different business. TrainLive runs it — you just plug in.</p>
+    <div class="section">
+      <div class="section-label">The Opportunity</div>
+      <h2>Ghana's creator economy<br>is leaking value.</h2>
+      <p class="lead">Thousands of young Ghanaians have built real audiences — 5K, 10K, 50K followers — and are earning
+        nothing from it. Meanwhile, businesses struggle to get exposure without big influencer budgets. TrainLive solves
+        both sides of this problem at once.</p>
+      <div class="highlight">
+        <p>"Instead of one mega-influencer, why not deploy 10, 20, or 50 micro-creators who are hungry, structured, and
+          competing to perform?"</p>
       </div>
     </div>
+
+    <footer>
+      <div class="footer-logo">TrainLive GH</div>
+      <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
+    </footer>
   </div>
 
-  <footer>
-    <div class="footer-logo">TrainLive GH</div>
-    <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
-  </footer>
-</div>
-
-<!-- ══ FOR BUSINESSES ══ -->
-<div class="page" id="page-businesses">
-  <div class="section">
-    <div class="section-label">For Businesses</div>
-    <h2>Your product. Our creators.<br>Their audiences.</h2>
-    <p class="lead">TrainLive gives your business access to a trained, competitive network of micro-creators who are ready to sell your product — without you managing a single creator yourself.</p>
-
-    <div class="two-col">
-      <div class="col-box gold-top">
-        <h3>What You Get</h3>
-        <p>When you partner with TrainLive for a VBC round, here's what's included:</p>
-        <ul class="clean">
-          <li>Up to 50 micro-creators promoting your product</li>
-          <li>14 days of structured, daily creator activity</li>
-          <li>Affiliate tracking — every sale traced to its creator</li>
-          <li>Content produced across TikTok, Instagram, WhatsApp & more</li>
-          <li>Daily leaderboard keeping creators motivated and competing</li>
-          <li>Full management by TrainLive — you stay hands-off</li>
-          <li>Post-challenge report — sales, reach, and performance data</li>
-        </ul>
+  <!-- VBC -->
+  <div class="page" id="page-vbc">
+    <div class="section">
+      <div class="section-label">The Engine</div>
+      <h2>The Viral Bounty<br>Challenge.</h2>
+      <p class="lead">A 14-day creator competition that sells any product at scale. Structured, repeatable, and powered
+        by competition, daily engagement, and real cash prizes.</p>
+      <div class="vbc-grid">
+        <div class="vbc-steps">
+          <div class="vbc-step">
+            <div class="step-num">01</div>
+            <div class="step-text">Recruitment ad drops on TikTok & Instagram</div>
+          </div>
+          <div class="vbc-step">
+            <div class="step-num">02</div>
+            <div class="step-text">Creators join the TrainLive WhatsApp Channel</div>
+          </div>
+          <div class="vbc-step">
+            <div class="step-num">03</div>
+            <div class="step-text">VSL on landing page explains the challenge fully</div>
+          </div>
+          <div class="vbc-step">
+            <div class="step-num">04</div>
+            <div class="step-text">Creators register, pay entry fee, join the group</div>
+          </div>
+          <div class="vbc-step">
+            <div class="step-num">05</div>
+            <div class="step-text">Receive product, affiliate link & instructions</div>
+          </div>
+          <div class="vbc-step">
+            <div class="step-num">06</div>
+            <div class="step-text">14-day challenge begins — daily videos keep energy high</div>
+          </div>
+          <div class="vbc-step">
+            <div class="step-num">07</div>
+            <div class="step-text">Winners announced. Prizes paid. Round two begins.</div>
+          </div>
+        </div>
+        <div class="vbc-stats">
+          <div class="vbc-stat">
+            <div class="big">14</div>
+            <div class="label">Days per challenge</div>
+          </div>
+          <div class="vbc-stat">
+            <div class="big">50</div>
+            <div class="label">Creators per round</div>
+          </div>
+          <div class="vbc-stat">
+            <div class="big">∞</div>
+            <div class="label">Repeatable rounds</div>
+          </div>
+          <div class="vbc-stat">
+            <div class="big">2×</div>
+            <div class="label">Revenue sides</div>
+          </div>
+        </div>
       </div>
-      <div class="col-box">
-        <h3>Who It's For</h3>
-        <p>VBC works best for businesses with a product or service that:</p>
-        <ul class="clean">
-          <li>Can be bought or booked online</li>
-          <li>Appeals to Ghanaians aged 18–35</li>
-          <li>Has a clear value proposition creators can explain</li>
-          <li>Benefits from volume — more reach, more buyers</li>
-        </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Why It Works</div>
+      <h2>Competition changes everything.</h2>
+      <p class="lead">Creators don't just post and forget — they are competing, being tracked on a leaderboard, and
+        motivated daily. That energy produces better content, more reach, and more sales than any passive affiliate
+        programme.</p>
+      <div class="pillars" style="margin-top:48px">
+        <div class="pillar">
+          <div class="pillar-num">→</div>
+          <h3>Structured</h3>
+          <p>Every creator follows a clear system — product, instructions, affiliate link, daily guidance. No guesswork.
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">→</div>
+          <h3>Incentivised</h3>
+          <p>Real cash prizes on the line. A leaderboard that moves daily. Creators who want to win will work harder
+            than any paid ad.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">→</div>
+          <h3>Repeatable</h3>
+          <p>Same system every round. Different product, different business. TrainLive runs it — you just plug in.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">TrainLive GH</div>
+      <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
+    </footer>
+  </div>
+
+  <!-- FOR BUSINESSES -->
+  <div class="page" id="page-businesses">
+    <div class="section">
+      <div class="section-label">For Businesses</div>
+      <h2>Your product. Our creators.<br>Their audiences.</h2>
+      <p class="lead">TrainLive gives your business access to a trained, competitive network of micro-creators who are
+        ready to sell your product — without you managing a single creator yourself.</p>
+      <div class="two-col">
+        <div class="col-box gold-top">
+          <h3>What You Get</h3>
+          <p>When you partner with TrainLive for a VBC round, here's what's included:</p>
+          <ul class="clean">
+            <li>Up to 50 micro-creators promoting your product</li>
+            <li>14 days of structured, daily creator activity</li>
+            <li>Affiliate tracking — every sale traced to its creator</li>
+            <li>Content produced across TikTok, Instagram, WhatsApp & more</li>
+            <li>Daily leaderboard keeping creators motivated and competing</li>
+            <li>Full management by TrainLive — you stay hands-off</li>
+            <li>Post-challenge report — sales, reach, and performance data</li>
+          </ul>
+        </div>
+        <div class="col-box">
+          <h3>Who It's For</h3>
+          <p>VBC works best for businesses with a product or service that:</p>
+          <ul class="clean">
+            <li>Can be bought or booked online</li>
+            <li>Appeals to Ghanaians aged 18–35</li>
+            <li>Has a clear value proposition creators can explain</li>
+            <li>Benefits from volume — more reach, more buyers</li>
+          </ul>
+          <div style="margin-top:32px">
+            <p style="font-size:13px;color:var(--text-dim);margin-bottom:0">Ready to plug your business into VBC?</p>
+            <button class="btn-gold" style="margin-top:16px" onclick="showPage('contact')">Get In Touch →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Why Not One Big Influencer?</div>
+      <h2>More creators.<br>More reach. Less risk.</h2>
+      <p class="lead">One mega-influencer posts once and moves on. 50 micro-creators post daily for 14 days — they're
+        competing, they're hungry, and their audiences trust them personally. That's the difference.</p>
+      <div class="highlight">
+        <p>"Micro-creators have smaller but more loyal audiences. When they recommend something, their followers listen
+          — because it feels personal, not sponsored."</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-logo">TrainLive GH</div>
+      <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
+    </footer>
+  </div>
+
+  <!-- FOR CREATORS -->
+  <div class="page" id="page-creators">
+    <div class="section">
+      <div class="section-label">For Creators</div>
+      <h2>You have followers.<br>Now earn from them.</h2>
+      <p class="lead">You've been posting, growing, creating — and still not seeing the money. TrainLive gives you a
+        real product to sell, a clear system to follow, real commissions, and cash prizes to compete for. All in 14
+        days.</p>
+
+      <div class="benefits-grid">
+        <div class="benefit-box">
+          <div class="benefit-icon">📦</div>
+          <h4>A Real Product to Sell</h4>
+          <p>No need to create anything. You get a ready-made product, a unique affiliate link, and everything you need
+            to start promoting on day one.</p>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">💸</div>
+          <h4>Commissions Per Sale</h4>
+          <p>Every sale you make through your affiliate link earns you a commission — paid directly to you. The more you
+            sell, the more you earn. Commission rates are stated per challenge.</p>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <h4>Real Cash Prizes</h4>
+          <p>The top 3 performers at the end of the 14-day challenge win real cash prizes. 1st, 2nd, and 3rd place. The
+            leaderboard is live — you can see where you stand every day.</p>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🎯</div>
+          <h4>Daily Instructions</h4>
+          <p>You're never left guessing what to do. Every day of the challenge, a video drops with guidance, tips,
+            motivation, and leaderboard updates to keep you moving.</p>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🤝</div>
+          <h4>A Community Behind You</h4>
+          <p>You join a WhatsApp group with all other challenge creators — energy, competition, support, and
+            accountability. You're not doing this alone.</p>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">📈</div>
+          <h4>Learn to Sell</h4>
+          <p>Every creator who completes a VBC challenge comes out knowing how to promote a product, move an audience,
+            and generate sales. That skill stays with you forever.</p>
+        </div>
+      </div>
+
+      <!-- BRAND DEAL SECTION -->
+      <div class="brand-deal-box">
+        <h3>The Bigger Prize — Brand Deals.</h3>
+        <p>Most brand deals go to big influencers. Not because smaller creators aren't good enough — but because they
+          can't prove they can sell. VBC changes that completely.</p>
+        <p>When you complete a challenge, you have something most creators don't: <strong
+            style="color:var(--white)">proof of work.</strong> Real numbers. Real sales. A real track record that brands
+          can see and trust.</p>
+        <p style="font-size:14px;color:var(--text-dim)">Here's how it works:</p>
+        <div class="brand-deal-steps">
+          <div class="bd-step">
+            <div class="bd-step-num">01</div>
+            <p>You join VBC and complete the 14-day challenge</p>
+          </div>
+          <div class="bd-step">
+            <div class="bd-step-num">02</div>
+            <p>You generate real sales tracked to your affiliate link</p>
+          </div>
+          <div class="bd-step">
+            <div class="bd-step-num">03</div>
+            <p>You now have a portfolio — "I sold X products in 14 days"</p>
+          </div>
+          <div class="bd-step">
+            <div class="bd-step-num">04</div>
+            <p>Brands see your proof and take you seriously for deals</p>
+          </div>
+        </div>
         <div style="margin-top:32px">
-          <p style="font-size:13px;color:var(--text-dim);margin-bottom:0">Ready to plug your business into VBC?</p>
-          <button class="btn-gold" style="margin-top:16px" onclick="showPage('contact')">Get In Touch →</button>
+          <p style="font-size:13px;color:var(--text-dim)">VBC doesn't just pay you now — it positions you for bigger
+            opportunities later. No more waiting for a deal that never comes. Build the proof first.</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="section-label">Why Not One Big Influencer?</div>
-    <h2>More creators.<br>More reach. Less risk.</h2>
-    <p class="lead">One mega-influencer posts once and moves on. 50 micro-creators post daily for 14 days — they're competing, they're hungry, and their audiences trust them personally. That's the difference.</p>
-    <div class="highlight">
-      <p>"Micro-creators have smaller but more loyal audiences. When they recommend something, their followers listen — because it feels personal, not sponsored."</p>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-logo">TrainLive GH</div>
-    <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
-  </footer>
-</div>
-
-<!-- ══ FOR CREATORS ══ -->
-<div class="page" id="page-creators">
-  <div class="section">
-    <div class="section-label">For Creators</div>
-    <h2>You have followers.<br>Now earn from them.</h2>
-    <p class="lead">You've been posting, growing, creating — and still not seeing the money. TrainLive gives you a real product to sell, a clear system to follow, and real cash prizes to compete for. All in 14 days.</p>
-
-    <div class="two-col">
-      <div class="col-box gold-top">
-        <h3>What You Get</h3>
-        <ul class="clean">
-          <li>A real digital product to promote — ready to sell</li>
-          <li>Your own unique affiliate link to track your sales</li>
-          <li>Daily video instructions — no guessing what to do</li>
-          <li>A WhatsApp group with all other creators for energy and support</li>
-          <li>A live leaderboard — see where you rank every day</li>
-          <li>Cash commissions on every sale you make</li>
-          <li>Cash prizes for top 3 performers at the end</li>
-        </ul>
-      </div>
-      <div class="col-box">
-        <h3>Who Can Join</h3>
-        <ul class="clean">
-          <li>You're based in Ghana</li>
-          <li>You're aged 18–35</li>
-          <li>You're active on TikTok, Instagram, Snapchat, WhatsApp or Facebook</li>
-          <li>You're serious about making money — not just collecting followers</li>
-        </ul>
-        <div style="margin-top:32px">
-          <p style="font-size:13px;color:var(--text-dim);margin-bottom:0">The next challenge is coming. Be ready.</p>
-          <button class="btn-gold" style="margin-top:16px" onclick="showPage('contact')">Stay In The Loop →</button>
+    <div class="section">
+      <div class="section-label">Who Can Join</div>
+      <h2>The only requirement<br>is seriousness.</h2>
+      <p class="lead">You don't need a massive following. You don't need experience. You need a phone, an active social
+        media account, and the hunger to learn and earn.</p>
+      <div class="two-col" style="margin-top:48px">
+        <div class="col-box gold-top">
+          <h3>Requirements</h3>
+          <ul class="clean">
+            <li>Based in Ghana</li>
+            <li>Aged 18–35</li>
+            <li>Active on TikTok, Instagram, Snapchat, WhatsApp or Facebook</li>
+            <li>Serious about making money — not just collecting followers</li>
+            <li>Willing to commit to 14 days of consistent effort</li>
+          </ul>
+        </div>
+        <div class="col-box">
+          <h3>Ready to Join?</h3>
+          <p>The next challenge is coming. Get on the list now so you're the first to know when registration opens.</p>
+          <button class="btn-gold" onclick="showPage('contact')">Stay In The Loop →</button>
         </div>
       </div>
     </div>
+
+    <footer>
+      <div class="footer-logo">TrainLive GH</div>
+      <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
+    </footer>
   </div>
 
-  <div class="section">
-    <div class="section-label">The Bigger Picture</div>
-    <h2>Learn to sell.<br>Change your life.</h2>
-    <p class="lead">Joining VBC isn't just about the prize money. Every creator who goes through the challenge learns something more valuable — how to sell. How to talk about a product. How to move an audience to take action. That skill will serve you for the rest of your life.</p>
-    <div class="highlight">
-      <p>"Selling is the most important skill young Ghanaians are not being taught. TrainLive is here to change that — one challenge at a time."</p>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-logo">TrainLive GH</div>
-    <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
-  </footer>
-</div>
-
-<!-- ══ CONTACT ══ -->
-<div class="page" id="page-contact">
-  <div class="section">
-    <div class="section-label">Contact</div>
-    <h2>Let's talk.</h2>
-    <p class="lead">Whether you're a business looking to partner, a creator ready to join, or just curious about what we're building — reach out. We're based in Ghana and we respond fast.</p>
-
-    <div class="contact-grid">
-      <div class="contact-items">
-        <div class="contact-item">
-          <span class="contact-label">WhatsApp</span>
-          <span class="contact-value">+233 — —</span>
+  <!-- CONTACT -->
+  <div class="page" id="page-contact">
+    <div class="section">
+      <div class="section-label">Contact</div>
+      <h2>Let's talk.</h2>
+      <p class="lead">Whether you're a business looking to partner, a creator ready to join, or just curious about what
+        we're building — reach out. We're based in Ghana and we respond fast.</p>
+      <div class="contact-grid">
+        <div class="contact-items">
+          <div class="contact-item"><span class="contact-label">WhatsApp</span><span class="contact-value">+233 —
+              —</span></div>
+          <div class="contact-item"><span class="contact-label">Email</span><span
+              class="contact-value">hello@trainlivegh.com</span></div>
+          <div class="contact-item"><span class="contact-label">Instagram</span><span
+              class="contact-value">@trainlivegh</span></div>
+          <div class="contact-item"><span class="contact-label">TikTok</span><span
+              class="contact-value">@trainlivegh</span></div>
+          <div class="contact-item"><span class="contact-label">Location</span><span class="contact-value">Accra,
+              Ghana</span></div>
         </div>
-        <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <span class="contact-value">hello@trainlivegh.com</span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Instagram</span>
-          <span class="contact-value">@trainlivegh</span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">TikTok</span>
-          <span class="contact-value">@trainlivegh</span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-label">Location</span>
-          <span class="contact-value">Accra, Ghana</span>
+        <div>
+          <p style="font-size:15px;color:var(--text-mid);margin-bottom:32px">Not sure what to say? Here are the most
+            common reasons people reach out:</p>
+          <ul class="clean">
+            <li>I'm a business and I want to plug my product into VBC</li>
+            <li>I'm a creator and I want to join the next challenge</li>
+            <li>I want to learn more about what TrainLive is building</li>
+            <li>I want to support or partner with TrainLive</li>
+          </ul>
         </div>
       </div>
-      <div>
-        <p style="font-size:15px;color:var(--text-mid);margin-bottom:32px">Not sure what to say? Here are the most common reasons people reach out:</p>
-        <ul class="clean">
-          <li>I'm a business and I want to plug my product into VBC</li>
-          <li>I'm a creator and I want to join the next challenge</li>
-          <li>I want to learn more about what TrainLive is building</li>
-          <li>I want to support or partner with TrainLive</li>
-        </ul>
-      </div>
     </div>
+    <footer>
+      <div class="footer-logo">TrainLive GH</div>
+      <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
+    </footer>
   </div>
 
-  <footer>
-    <div class="footer-logo">TrainLive GH</div>
-    <div class="footer-note">Ghana · Creator Marketing, Engineered.</div>
-  </footer>
-</div>
-
-<script>
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    document.getElementById('btn-' + id).classList.add('active');
-    window.scrollTo(0, 0);
-  }
-</script>
+  <script>
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      document.getElementById('btn-' + id).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  </script>
 </body>
+
 </html>
